@@ -1,0 +1,11 @@
+{
+  "name": "online-boss-hosting-guide",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build-pdf": "node md-to-pdf.js"
+  },
+  "dependencies": {
+    "markdown-pdf": "^11.0.0"
+  }
+}

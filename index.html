@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- 
+    ⚠️ SLS COMPATIBILITY MODE ACTIVATED ⚠️
+    
+    This HTML has been automatically converted for Singapore Learning Space (SLS) compatibility:
+    - Import maps have been removed (not supported in SLS)
+    - ES6 module scripts converted to regular scripts
+    - Import statements converted to global variable access
+    - External libraries loaded as traditional script tags
+    
+    Note: Some advanced features may not work in SLS due to security restrictions.
+    For full functionality, use the included local server files.
+    -->
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>ONLINE BOSS - 160+ Products</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;}
+        body{background:linear-gradient(135deg,#f5f7fa 0%,#c3cfe2 100%);min-height:100vh;}
+        .header{background:linear-gradient(135deg,#2d5016 0%,#4a7c23 100%);color:white;padding:20px;text-align:center;position:sticky;top:0;z-index:100;}
+        .header h1{font-size:28px;letter-spacing:1px;}
+        .header h1 span{font-size:32px;font-weight:bold;}
+        .header p{font-size:14px;margin-top:5px;opacity:0.9;}
+        .delivery-area{background:#ff9800;padding:8px15px;font-size:12px;margin-top:10px;border-radius:20px;display:inline-block;}
+        .customer-care-banner{background:linear-gradient(135deg,#1a237e 0%,#283593 100%);color:white;padding:12px;text-align:center;margin-bottom:20px;border-radius:15px;display:flex;justify-content:center;align-items:center;gap:15px;flex-wrap:wrap;}
+        .customer-care-banner a{color:#FFD700;text-decoration:none;font-size:20px;font-weight:bold;background:rgba(255,255,255,0.2);padding:5px15px;border-radius:25px;}
+        .partners-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:15px;margin-bottom:20px;}
+        .partner-card{color:white;padding:15px;text-align:center;border-radius:15px;cursor:pointer;transition:transform0.3s;}
+        .partner-card:hover{transform:scale(1.02);}
+        .bigbasket{background:linear-gradient(135deg,#00A859 0%,#007A3D 100%);}
+        .manimaligai{background:linear-gradient(135deg,#FF6B35 0%,#E85D2C 100%);}
+        .pothysmart{background:linear-gradient(135deg,#9B59B6 0%,#8E44AD 100%);}
+        .saraswathi{background:linear-gradient(135deg,#3498DB 0%,#2980B9 100%);}
+        .amudhu{background:linear-gradient(135deg,#8B0000 0%,#DAA520 100%);}
+        .ppsnco{background:linear-gradient(135deg,#1a237e 0%,#283593 100%);}
+        .container{max-width:1200px;margin:0 auto;padding:20px;}
+        .wallet-card{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:white;padding:20px;border-radius:20px;margin-bottom:20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:15px;}
+        .wallet-info h3{font-size:14px;opacity:0.9;}
+        .wallet-info .balance{font-size:32px;font-weight:bold;}
+        .wallet-actions{display:flex;gap:10px;flex-wrap:wrap;}
+        .wallet-btn{background:rgba(255,255,255,0.2);border:none;color:white;padding:10px20px;border-radius:10px;cursor:pointer;font-size:14px;}
+        .wallet-btn:hover{background:rgba(255,255,255,0.3);}
+        .admin-btn{background:#ff9800;color:#333;}
+        .info-card{background:white;border-radius:20px;padding:15px;margin-bottom:20px;box-shadow:0 5px 15px rgba(0,0,0,0.1);}
+        .info-title{font-weight:bold;margin-bottom:10px;color:#2d5016;font-size:16px;}
+        .info-row{display:flex;justify-content:space-between;padding:8px0;border-bottom:1px solid #eee;}
+        .rule-card{background:#fff8e1;border-left:4px solid #ff9800;}
+        .bonus-card{background:#e8f5e9;border-left:4px solid #4caf50;}
+        .profile-card{background:white;border-radius:20px;padding:20px;margin-bottom:20px;box-shadow:0 5px 15px rgba(0,0,0,0.1);}
+        .profile-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px;flex-wrap:wrap;gap:10px;}
+        .edit-address-btn{background:#2d5016;color:white;border:none;padding:8px20px;border-radius:10px;cursor:pointer;}
+        .address-info{background:#f8f9fa;padding:15px;border-radius:15px;margin-top:10px;}
+        .address-line{margin:5px0;color:#333;}
+        .category-tabs{display:flex;gap:10px;margin-bottom:20px;overflow-x:auto;padding-bottom:10px;flex-wrap:wrap;}
+        .category-tab{padding:8px20px;background:#f0f0f0;border-radius:20px;cursor:pointer;white-space:nowrap;}
+        .category-tab.active{background:#2d5016;color:white;}
+        .products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;margin-bottom:30px;}
+        .product-card{background:white;border-radius:20px;overflow:hidden;box-shadow:0 5px 15px rgba(0,0,0,0.1);transition:transform0.3s;position:relative;}
+        .product-card:hover{transform:translateY(-5px);}
+        .product-image{background:#f8f9fa;padding:20px;text-align:center;font-size:60px;cursor:pointer;min-height:130px;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+        .product-image:hover{background:#e0e0e0;}
+        .in-stock{position:absolute;top:10px;right:10px;background:#4caf50;color:white;padding:4px10px;border-radius:20px;font-size:11px;font-weight:bold;}
+        .product-info{padding:15px;}
+        .product-title{font-size:18px;font-weight:bold;color:#333;}
+        .product-size{color:#666;font-size:14px;margin:5px0;}
+        .product-price{font-size:24px;font-weight:bold;color:#2d5016;margin:10px0;}
+        .original-price{font-size:14px;color:#999;text-decoration:line-through;margin-left:10px;}
+        .discount-badge{background:#ff9800;color:white;font-size:11px;padding:2px6px;border-radius:10px;margin-left:10px;}
+        .earnings-badge{background:#e8f5e9;color:#4caf50;font-size:11px;padding:3px8px;border-radius:10px;display:inline-block;margin-top:5px;}
+        .add-to-cart{width:100%;padding:10px;background:#2d5016;color:white;border:none;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;margin-top:10px;}
+        .add-to-cart:hover{background:#4a7c23;}
+        .cart-section{background:white;border-radius:20px;padding:20px;margin-top:20px;box-shadow:0 5px 15px rgba(0,0,0,0.1);}
+        .cart-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px;padding-bottom:10px;border-bottom:2px solid #eee;}
+        .cart-items{max-height:300px;overflow-y:auto;}
+        .cart-item{display:flex;justify-content:space-between;align-items:center;padding:10px0;border-bottom:1px solid #f0f0f0;}
+        .cart-item-info{flex:1;}
+        .cart-item-title{font-weight:600;}
+        .cart-item-price{font-size:12px;color:#666;}
+        .cart-item-quantity{display:flex;align-items:center;gap:10px;}
+        .quantity-btn{width:30px;height:30px;border:none;border-radius:50%;background:#f0f0f0;cursor:pointer;font-size:18px;}
+        .cart-item-total{font-weight:bold;color:#2d5016;min-width:80px;text-align:right;}
+        .remove-item{color:#dc3545;cursor:pointer;margin-left:10px;font-size:18px;}
+        .cart-total{margin-top:15px;padding-top:15px;border-top:2px solid #eee;text-align:right;}
+        .cart-total h3{font-size:20px;color:#333;}
+        .checkout-btn{width:100%;padding:15px;background:linear-gradient(135deg,#2d5016 0%,#4a7c23 100%);color:white;border:none;border-radius:10px;font-size:18px;font-weight:bold;cursor:pointer;margin-top:15px;}
+        .history-section{background:white;border-radius:20px;padding:20px;margin-top:20px;box-shadow:0 5px 15px rgba(0,0,0,0.1);}
+        .history-tabs{display:flex;gap:10px;margin-bottom:20px;border-bottom:2px solid #eee;padding-bottom:10px;flex-wrap:wrap;}
+        .history-tab{padding:8px20px;cursor:pointer;border-radius:10px;background:#f0f0f0;}
+        .history-tab.active{background:#2d5016;color:white;}
+        .history-item{display:flex;align-items:center;padding:12px0;border-bottom:1px solid #f0f0f0;}
+        .history-icon{font-size:30px;margin-right:15px;}
+        .history-info{flex:1;}
+        .history-title{font-weight:600;}
+        .history-date{font-size:11px;color:#999;margin-top:4px;}
+        .history-amount{font-weight:bold;font-size:16px;}
+        .credit{color:#10b981;}
+        .debit{color:#ef4444;}
+        .status-badge{font-size:10px;padding:2px8px;border-radius:10px;display:inline-block;margin-left:10px;}
+        .status-pending{background:#fff3e0;color:#ff9800;}
+        .status-approved{background:#e8f5e9;color:#4caf50;}
+        .empty-history{text-align:center;padding:40px;color:#999;}
+        .admin-container{max-width:1200px;margin:0 auto;background:white;border-radius:30px;padding:20px;}
+        .tabs{display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap;}
+        .tab{padding:10px20px;cursor:pointer;border-radius:10px;background:#f0f0f0;}
+        .tab.active{background:linear-gradient(135deg,#2d5016 0%,#4a7c23 100%);color:white;}
+        .request-card{background:#f8f9fa;border-radius:15px;padding:15px;margin-bottom:15px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:15px;}
+        .request-info{flex:1;}
+        .request-actions button{margin-left:10px;padding:8px20px;border:none;border-radius:8px;cursor:pointer;font-weight:600;}
+        .btn-approve{background:#28a745;color:white;}
+        .btn-reject{background:#dc3545;color:white;}
+        .stats-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:15px;margin-bottom:20px;}
+        .stat-card{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:white;padding:15px;border-radius:15px;text-align:center;}
+        .stat-number{font-size:28px;font-weight:bold;}
+        .modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:1000;justify-content:center;align-items:center;}
+        .modal-content{background:white;border-radius:20px;max-width:500px;width:90%;padding:25px;}
+        .modal-header{font-size:20px;font-weight:bold;margin-bottom:20px;}
+        .form-group{margin-bottom:20px;}
+        .form-group label{display:block;margin-bottom:8px;font-weight:600;}
+        .form-group input,.form-group select{width:100%;padding:12px;border:2px solid #e0e0e0;border-radius:12px;}
+        .btn{width:100%;padding:14px;border:none;border-radius:12px;font-size:16px;font-weight:600;cursor:pointer;}
+        .btn-primary{background:linear-gradient(135deg,#2d5016 0%,#4a7c23 100%);color:white;}
+        .cancel-btn{background:#6c757d;color:white;margin-top:10px;}
+        .message{position:fixed;top:20px;right:20px;padding:12px20px;border-radius:10px;z-index:2000;animation:slideIn0.3s ease;}
+        @keyframes slideIn{from{transform:translateX(100%);opacity:0;}to{transform:translateX(0);opacity:1;}}
+        .success{background:#d4edda;color:#155724;border-left:4px solid #28a745;}
+        .error{background:#f8d7da;color:#721c24;border-left:4px solid #dc3545;}
+        .auth-container{max-width:450px;margin:50px auto;background:white;border-radius:30px;padding:40px30px;box-shadow:0 20px 60px rgba(0,0,0,0.3);}
+        .auth-header{text-align:center;margin-bottom:30px;}
+        @media(max-width:768px){.container{padding:15px;}.wallet-card{flex-direction:column;text-align:center;}.partners-grid{grid-template-columns:repeat(2,1fr);}}
+    </style>
+</head>
+<body>
+
+<div id="userPanel">
+    <div class="header">
+        <h1>🛒 <span>ONLINE BOSS</span><br>Oils & Grocery</h1>
+        <p>Pure Quality Oils | Home Delivery</p>
+        <div class="delivery-area">📍 Delivery: Sundharapuram | Podanur | Coimbatore</div>
+    </div>
+
+    <div class="container">
+        <div class="customer-care-banner">
+            <span>📞</span><span>24/7 Customer Care</span>
+            <a href="tel:+919487104731">📱 94871 04731</a>
+            <span>💬 WhatsApp Available</span>
+        </div>
+
+        <div class="partners-grid">
+            <div class="partner-card bigbasket" onclick="window.open('https://www.bigbasket.com/','_blank')"><h3>🛒 BigBasket</h3><p>India's Largest Online Supermarket</p><span style="color:#FFD700;font-size:11px;">Click→</span></div>
+            <div class="partner-card manimaligai" onclick="window.open('https://www.manimaligai.com/','_blank')"><h3>🌾 Manimaligai</h3><p>Best Online Super Market</p><span style="color:#FFD700;font-size:11px;">Click→</span></div>
+            <div class="partner-card pothysmart" onclick="window.open('https://pothysmart.com/','_blank')"><h3>🥻 PothySmart</h3><p>Traditional Shopping</p><span style="color:#FFD700;font-size:11px;">Click→</span></div>
+            <div class="partner-card saraswathi" onclick="window.open('https://www.saraswathistore.com/','_blank')"><h3>📚 Saraswathi Store</h3><p>One-Stop Shop</p><span style="color:#FFD700;font-size:11px;">Click→</span></div>
+            <div class="partner-card amudhu" onclick="window.open('https://amudhufoodproducts.com/','_blank')"><h3>🌿 AMUTHU Foods</h3><p>Pure Ghee | Wood-Pressed Oils</p><span style="color:#FFD700;font-size:11px;">Click→</span></div>
+            <div class="partner-card ppsnco" onclick="window.open('https://ppsnco.com/','_blank')"><h3>🛍️ PPSNCO</h3><p>Online Grocery, Coimbatore</p><span style="color:#FFD700;font-size:11px;">Click→</span></div>
+        </div>
+
+        <div class="wallet-card">
+            <div class="wallet-info"><h3>💰 Total Earnings</h3><div class="balance" id="walletBalance">₹0</div><div id="userName" style="font-size:12px;margin-top:5px;"></div></div>
+            <div class="wallet-actions">
+                <button class="wallet-btn" onclick="showDepositModal()">📥 Deposit</button>
+                <button class="wallet-btn" onclick="showWithdrawalModal()">📤 Withdrawal</button>
+                <button class="wallet-btn admin-btn" onclick="showAdminLogin()">👑 Admin</button>
+                <button class="wallet-btn" onclick="logoutUser()">🚪 Logout</button>
+            </div>
+        </div>
+
+        <div class="info-card rule-card">
+            <div class="info-title">📋 Withdrawal Rules</div>
+            <div class="info-row"><span>📅 Limit:</span><span><strong>Every 15 days once</strong></span></div>
+            <div class="info-row"><span>💰 Max:</span><span><strong>10% of balance</strong></span></div>
+            <div class="info-row"><span>⏳ Next:</span><span id="nextWithdrawalDate"><strong>Loading...</strong></span></div>
+            <div id="pendingWithdrawalWarning" style="background:#ffebee;padding:10px;border-radius:10px;margin-top:10px;display:none;">⚠️ Pending request!</div>
+        </div>
+
+        <div class="info-card bonus-card">
+            <div class="info-title">🎁 100% Bonus Offer</div>
+            <div class="info-row"><span>🛒 Every Purchase:</span><span><strong>100% Bonus to Wallet</strong></span></div>
+            <div class="info-row"><span>💵 Example:</span><span><strong>₹500 order = ₹500 bonus</strong></span></div>
+        </div>
+
+        <div class="profile-card">
+            <div class="profile-header"><h2>📍 Delivery Address</h2><button class="edit-address-btn" onclick="showAddressModal()">✏️ Edit</button></div>
+            <div id="addressDisplay" class="address-info"><div class="address-line">Loading...</div></div>
+        </div>
+
+        <div class="category-tabs" id="categoryTabs">
+            <div class="category-tab active" data-category="all">📦 All (160+)</div>
+            <div class="category-tab" data-category="oils">🫒 Oils (15)</div>
+            <div class="category-tab" data-category="groceries">🍚 Groceries (30)</div>
+            <div class="category-tab" data-category="fruits">🍎 Fruits (15)</div>
+            <div class="category-tab" data-category="vegetables">🥬 Veggies (40)</div>
+            <div class="category-tab" data-category="juices">🥤 Juices (10)</div>
+            <div class="category-tab" data-category="detergents">🧺 Detergents (20)</div>
+            <div class="category-tab" data-category="rice">🍚 Rice (30)</div>
+        </div>
+
+        <div class="products-grid" id="productsGrid"></div>
+
+        <div class="cart-section">
+            <div class="cart-header"><h2>🛒 Your Cart</h2><button class="wallet-btn" onclick="clearCart()" style="background:#dc3545;">Clear</button></div>
+            <div id="cartItems" class="cart-items"><div class="empty-history">Cart empty</div></div>
+            <div id="cartTotal" class="cart-total"></div>
+            <button class="checkout-btn" onclick="placeOrderCOD()">✅ Place Order (COD)</button>
+        </div>
+
+        <div class="history-section">
+            <div class="history-tabs">
+                <div class="history-tab active" onclick="showHistoryTab('deposits')">💰 Deposit History</div>
+                <div class="history-tab" onclick="showHistoryTab('withdrawals')">💸 Withdrawal History</div>
+                <div class="history-tab" onclick="showHistoryTab('orders')">📦 Order History</div>
+            </div>
+            <div id="depositsHistory"><div class="empty-history">No deposits</div></div>
+            <div id="withdrawalsHistory" style="display:none;"><div class="empty-history">No withdrawals</div></div>
+            <div id="ordersHistory" style="display:none;"><div class="empty-history">No orders</div></div>
+        </div>
+    </div>
+</div>
+
+<div id="adminPanel" style="display:none;">
+    <div class="header"><h1>👑 Admin Dashboard</h1><button onclick="logoutAdmin()" style="background:#dc3545;margin-top:10px;padding:8px20px;border:none;border-radius:20px;cursor:pointer;">← Back</button></div>
+    <div class="container">
+        <div class="stats-cards">
+            <div class="stat-card"><div class="stat-number" id="pendingDeposits">0</div><div class="stat-label">Pending Deposits</div></div>
+            <div class="stat-card"><div class="stat-number" id="pendingWithdrawals">0</div><div class="stat-label">Pending Withdrawals</div></div>
+            <div class="stat-card"><div class="stat-number" id="totalOrders">0</div><div class="stat-label">Total Orders</div></div>
+            <div class="stat-card"><div class="stat-number" id="totalUsers">0</div><div class="stat-label">Total Users</div></div>
+        </div>
+        <div class="tabs">
+            <div class="tab active" onclick="showAdminTab('deposits')">💰 Deposits</div>
+            <div class="tab" onclick="showAdminTab('withdrawals')">💸 Withdrawals</div>
+            <div class="tab" onclick="showAdminTab('orders')">📦 Orders</div>
+            <div class="tab" onclick="showAdminTab('users')">👥 Users</div>
+        </div>
+        <div id="adminDepositsTab"><div id="depositRequestsList"></div></div>
+        <div id="adminWithdrawalsTab" style="display:none;"><div id="withdrawalRequestsList"></div></div>
+        <div id="adminOrdersTab" style="display:none;"><div id="ordersList"></div></div>
+        <div id="adminUsersTab" style="display:none;"><div id="usersList"></div></div>
+    </div>
+</div>
+
+<!-- Modals -->
+<div id="addressModal" class="modal"><div class="modal-content"><div class="modal-header">📍 Edit Address</div>
+    <div class="form-group"><label>Full Name</label><input type="text" id="addressName"></div>
+    <div class="form-group"><label>Phone</label><input type="tel" id="addressPhone"></div>
+    <div class="form-group"><label>Door No</label><input type="text" id="addressDoor"></div>
+    <div class="form-group"><label>Street</label><input type="text" id="addressStreet"></div>
+    <div class="form-group"><label>Landmark</label><input type="text" id="addressLandmark"></div>
+    <div class="form-group"><label>City</label><input type="text" id="addressCity" value="Coimbatore"></div>
+    <div class="form-group"><label>Pincode</label><input type="text" id="addressPincode"></div>
+    <div class="form-group"><label>Area</label><select id="addressArea"><option>Sundharapuram</option><option>Podanur</option><option>Coimbatore</option></select></div>
+    <button class="btn btn-primary" onclick="saveAddress()">Save</button>
+    <button class="btn cancel-btn" onclick="closeModal('addressModal')">Cancel</button>
+</div></div>
+
+<div id="depositModal" class="modal"><div class="modal-content"><div class="modal-header">📥 Request Deposit</div>
+    <div class="form-group"><label>Amount (₹)</label><input type="number" id="depositAmount"></div>
+    <div class="form-group"><label>Payment Method</label><select id="paymentMethod"><option>UPI</option><option>Bank</option><option>Card</option></select></div>
+    <div class="form-group"><label>Transaction Ref</label><input type="text" id="transactionRef"></div>
+    <button class="btn btn-primary" onclick="submitDepositRequest()">Submit</button>
+    <button class="btn cancel-btn" onclick="closeModal('depositModal')">Cancel</button>
+</div></div>
+
+<div id="withdrawalModal" class="modal"><div class="modal-content"><div class="modal-header">📤 Request Withdrawal</div>
+    <div class="form-group"><label>Amount (₹)</label><input type="number" id="withdrawalAmount"></div>
+    <div class="form-group"><label>Bank/UPI</label><input type="text" id="bankDetails"></div>
+    <div id="withdrawalLimitInfo" style="margin-bottom:15px;padding:10px;background:#e8f5e9;border-radius:10px;"></div>
+    <button class="btn btn-primary" onclick="submitWithdrawalRequest()">Submit</button>
+    <button class="btn cancel-btn" onclick="closeModal('withdrawalModal')">Cancel</button>
+</div></div>
+
+<div id="adminLoginModal" class="modal"><div class="modal-content"><div class="modal-header">👑 Admin Login</div>
+    <div class="form-group"><label>Password</label><input type="password" id="adminPassword"></div>
+    <button class="btn btn-primary" onclick="verifyAdminLogin()">Login</button>
+    <button class="btn cancel-btn" onclick="closeModal('adminLoginModal')">Cancel</button>
+</div></div>
+
+<script>
+    import { initializeApp } from "vendor/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, updateProfile } from "vendor/firebase-auth_1.js";
+    import { getFirestore, doc, getDoc, setDoc, updateDoc, collection, query, where, getDocs, addDoc, Timestamp } from "vendor/firebase-firestore_2.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyAwlcy4uvw79EEjDRALtyFiIvUNwtuxt0A",
+        authDomain: "amuthu-earnings.firebaseapp.com",
+        databaseURL: "https://amuthu-earnings-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "amuthu-earnings",
+        storageBucket: "amuthu-earnings.firebasestorage.app",
+        messagingSenderId: "349450297914",
+        appId: "1:349450297914:web:d648cd56e1422c844d8b03",
+        measurementId: "G-EXN902G3YZ"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    const ADMIN_PASSWORD = "103693";
+    let currentUser = null;
+    let cart = [];
+    let currentCategory = "all";
+
+    // ========== COMPLETE 160+ PRODUCTS ==========
+    const products = [
+        // OILS (15 items)
+        { id: 1, name: "Groundnut Oil", size: "1 Litre", price: 300, originalPrice: 320, emoji: "🥜", category: "oils", discount: 6 },
+        { id: 2, name: "Gingelly Oil", size: "1 Litre", price: 425, originalPrice: 450, emoji: "🌿", category: "oils", discount: 6 },
+        { id: 3, name: "Gingelly Oil", size: "500 ml", price: 215, originalPrice: 230, emoji: "🌿", category: "oils", discount: 7 },
+        { id: 4, name: "Coconut Oil", size: "500 ml", price: 270, originalPrice: 290, emoji: "🥥", category: "oils", discount: 7 },
+        { id: 5, name: "Coconut Oil", size: "200 ml", price: 110, originalPrice: 120, emoji: "🥥", category: "oils", discount: 8 },
+        { id: 6, name: "Ghee", size: "500 ml", price: 470, originalPrice: 500, emoji: "🧈", category: "oils", discount: 6 },
+        { id: 7, name: "Ghee", size: "200 ml", price: 215, originalPrice: 230, emoji: "🧈", category: "oils", discount: 7 },
+        { id: 8, name: "Sunflower Oil", size: "1 Litre", price: 130, originalPrice: 150, emoji: "🌻", category: "oils", discount: 13 },
+        { id: 9, name: "Palm Oil", size: "1 Litre", price: 96, originalPrice: 110, emoji: "🫒", category: "oils", discount: 13 },
+        { id: 10, name: "Mustard Oil", size: "1 Litre", price: 150, originalPrice: 180, emoji: "🫒", category: "oils", discount: 17 },
+        { id: 11, name: "Olive Oil", size: "500 ml", price: 450, originalPrice: 550, emoji: "🫒", category: "oils", discount: 18 },
+        { id: 12, name: "Rice Bran Oil", size: "1 Litre", price: 120, originalPrice: 140, emoji: "🌾", category: "oils", discount: 14 },
+        { id: 13, name: "Sesame Oil", size: "500 ml", price: 220, originalPrice: 250, emoji: "🌿", category: "oils", discount: 12 },
+        { id: 14, name: "Avocado Oil", size: "250 ml", price: 350, originalPrice: 450, emoji: "🥑", category: "oils", discount: 22 },
+        { id: 15, name: "Walnut Oil", size: "250 ml", price: 450, originalPrice: 600, emoji: "🌰", category: "oils", discount: 25 },
+        
+        // GROCERIES (30 items)
+        { id: 16, name: "Jaggery Powder", size: "1 kg", price: 99, originalPrice: 120, emoji: "🍯", category: "groceries", discount: 18 },
+        { id: 17, name: "Jaggery Powder", size: "500 g", price: 50, originalPrice: 60, emoji: "🍯", category: "groceries", discount: 17 },
+        { id: 18, name: "Tata Salt", size: "1 kg", price: 27, originalPrice: 30, emoji: "🧂", category: "groceries", discount: 10 },
+        { id: 19, name: "Stone Salt", size: "1 kg", price: 12, originalPrice: 16, emoji: "🧂", category: "groceries", discount: 25 },
+        { id: 20, name: "Rava Sooji", size: "500 g", price: 27, originalPrice: 39, emoji: "🍚", category: "groceries", discount: 31 },
+        { id: 21, name: "Maida", size: "500 g", price: 27, originalPrice: 35, emoji: "🌾", category: "groceries", discount: 23 },
+        { id: 22, name: "Wheat Flour", size: "1 kg", price: 40, originalPrice: 50, emoji: "🌾", category: "groceries", discount: 20 },
+        { id: 23, name: "Besan", size: "500 g", price: 50, originalPrice: 65, emoji: "🌾", category: "groceries", discount: 23 },
+        { id: 24, name: "Rice Flour", size: "500 g", price: 35, originalPrice: 45, emoji: "🍚", category: "groceries", discount: 22 },
+        { id: 25, name: "Honey", size: "1 kg", price: 300, originalPrice: 350, emoji: "🍯", category: "groceries", discount: 14 },
+        { id: 26, name: "Sugar", size: "1 kg", price: 45, originalPrice: 55, emoji: "🍬", category: "groceries", discount: 18 },
+        { id: 27, name: "Brown Sugar", size: "500 g", price: 60, originalPrice: 80, emoji: "🍬", category: "groceries", discount: 25 },
+        { id: 28, name: "Coconut Powder", size: "200 g", price: 50, originalPrice: 70, emoji: "🥥", category: "groceries", discount: 29 },
+        { id: 29, name: "Corn Flour", size: "500 g", price: 40, originalPrice: 55, emoji: "🌽", category: "groceries", discount: 27 },
+        { id: 30, name: "Oats", size: "500 g", price: 70, originalPrice: 90, emoji: "🌾", category: "groceries", discount: 22 },
+        { id: 31, name: "Poha", size: "500 g", price: 35, originalPrice: 45, emoji: "🍚", category: "groceries", discount: 22 },
+        { id: 32, name: "Sago", size: "500 g", price: 45, originalPrice: 60, emoji: "⚪", category: "groceries", discount: 25 },
+        { id: 33, name: "Vermicelli", size: "500 g", price: 40, originalPrice: 55, emoji: "🍝", category: "groceries", discount: 27 },
+        { id: 34, name: "Idli Rava", size: "1 kg", price: 50, originalPrice: 65, emoji: "🍚", category: "groceries", discount: 23 },
+        { id: 35, name: "Dosa Rava", size: "1 kg", price: 55, originalPrice: 70, emoji: "🍚", category: "groceries", discount: 21 },
+        { id: 36, name: "Chilli Powder", size: "100 g", price: 60, originalPrice: 80, emoji: "🌶️", category: "groceries", discount: 25 },
+        { id: 37, name: "Turmeric Powder", size: "100 g", price: 30, originalPrice: 40, emoji: "🟡", category: "groceries", discount: 25 },
+        { id: 38, name: "Coriander Powder", size: "100 g", price: 35, originalPrice: 45, emoji: "🌿", category: "groceries", discount: 22 },
+        { id: 39, name: "Cumin Powder", size: "100 g", price: 45, originalPrice: 60, emoji: "🌿", category: "groceries", discount: 25 },
+        { id: 40, name: "Sambar Powder", size: "200 g", price: 50, originalPrice: 65, emoji: "🍲", category: "groceries", discount: 23 },
+        { id: 41, name: "Rasam Powder", size: "200 g", price: 45, originalPrice: 60, emoji: "🍲", category: "groceries", discount: 25 },
+        { id: 42, name: "Black Pepper", size: "100 g", price: 70, originalPrice: 90, emoji: "⚫", category: "groceries", discount: 22 },
+        { id: 43, name: "Garam Masala", size: "100 g", price: 55, originalPrice: 75, emoji: "🌿", category: "groceries", discount: 27 },
+        { id: 44, name: "Tea Powder", size: "500 g", price: 120, originalPrice: 150, emoji: "🍵", category: "groceries", discount: 20 },
+        { id: 45, name: "Coffee Powder", size: "500 g", price: 250, originalPrice: 300, emoji: "☕", category: "groceries", discount: 17 },
+        
+        // FRUITS (15 items)
+        { id: 46, name: "Apple", size: "1 kg", price: 160, originalPrice: 180, emoji: "🍎", category: "fruits", discount: 11 },
+        { id: 47, name: "Banana", size: "1 dozen", price: 50, originalPrice: 60, emoji: "🍌", category: "fruits", discount: 17 },
+        { id: 48, name: "Orange", size: "1 kg", price: 80, originalPrice: 100, emoji: "🍊", category: "fruits", discount: 20 },
+        { id: 49, name: "Grapes", size: "500 g", price: 60, originalPrice: 80, emoji: "🍇", category: "fruits", discount: 25 },
+        { id: 50, name: "Mango", size: "1 kg", price: 120, originalPrice: 150, emoji: "🥭", category: "fruits", discount: 20 },
+        { id: 51, name: "Pomegranate", size: "1 kg", price: 140, originalPrice: 160, emoji: "🍎", category: "fruits", discount: 13 },
+        { id: 52, name: "Watermelon", size: "1 kg", price: 30, originalPrice: 40, emoji: "🍉", category: "fruits", discount: 25 },
+        { id: 53, name: "Pineapple", size: "1 pc", price: 50, originalPrice: 60, emoji: "🍍", category: "fruits", discount: 17 },
+        { id: 54, name: "Papaya", size: "1 kg", price: 40, originalPrice: 50, emoji: "🍈", category: "fruits", discount: 20 },
+        { id: 55, name: "Strawberry", size: "250 g", price: 80, originalPrice: 100, emoji: "🍓", category: "fruits", discount: 20 },
+        { id: 56, name: "Kiwi", size: "1 pc", price: 25, originalPrice: 30, emoji: "🥝", category: "fruits", discount: 17 },
+        { id: 57, name: "Dragon Fruit", size: "1 pc", price: 70, originalPrice: 90, emoji: "🐉", category: "fruits", discount: 22 },
+        { id: 58, name: "Mosambi", size: "1 kg", price: 60, originalPrice: 80, emoji: "🍊", category: "fruits", discount: 25 },
+        { id: 59, name: "Guava", size: "1 kg", price: 70, originalPrice: 90, emoji: "🍐", category: "fruits", discount: 22 },
+        { id: 60, name: "Litchi", size: "500 g", price: 100, originalPrice: 130, emoji: "🍒", category: "fruits", discount: 23 },
+        
+        // VEGETABLES (40 items)
+        { id: 61, name: "Tomato", size: "1 kg", price: 40, originalPrice: 50, emoji: "🍅", category: "vegetables", discount: 20 },
+        { id: 62, name: "Onion", size: "1 kg", price: 35, originalPrice: 45, emoji: "🧅", category: "vegetables", discount: 22 },
+        { id: 63, name: "Potato", size: "1 kg", price: 30, originalPrice: 40, emoji: "🥔", category: "vegetables", discount: 25 },
+        { id: 64, name: "Carrot", size: "1 kg", price: 50, originalPrice: 60, emoji: "🥕", category: "vegetables", discount: 17 },
+        { id: 65, name: "Cucumber", size: "1 kg", price: 30, originalPrice: 40, emoji: "🥒", category: "vegetables", discount: 25 },
+        { id: 66, name: "Capsicum", size: "500 g", price: 40, originalPrice: 50, emoji: "🫑", category: "vegetables", discount: 20 },
+        { id: 67, name: "Cauliflower", size: "1 pc", price: 40, originalPrice: 50, emoji: "🥦", category: "vegetables", discount: 20 },
+        { id: 68, name: "Cabbage", size: "1 kg", price: 30, originalPrice: 35, emoji: "🥬", category: "vegetables", discount: 14 },
+        { id: 69, name: "Brinjal", size: "1 kg", price: 40, originalPrice: 50, emoji: "🍆", category: "vegetables", discount: 20 },
+        { id: 70, name: "Beans", size: "500 g", price: 35, originalPrice: 45, emoji: "🫘", category: "vegetables", discount: 22 },
+        { id: 71, name: "Spinach", size: "250 g", price: 20, originalPrice: 25, emoji: "🥬", category: "vegetables", discount: 20 },
+        { id: 72, name: "Mint", size: "100 g", price: 10, originalPrice: 15, emoji: "🌿", category: "vegetables", discount: 33 },
+        { id: 73, name: "Coriander", size: "100 g", price: 10, originalPrice: 15, emoji: "🌿", category: "vegetables", discount: 33 },
+        { id: 74, name: "Lemon", size: "1 pc", price: 5, originalPrice: 8, emoji: "🍋", category: "vegetables", discount: 38 },
+        { id: 75, name: "Ginger", size: "250 g", price: 30, originalPrice: 40, emoji: "🫚", category: "vegetables", discount: 25 },
+        { id: 76, name: "Garlic", size: "250 g", price: 60, originalPrice: 80, emoji: "🧄", category: "vegetables", discount: 25 },
+        { id: 77, name: "Green Chilli", size: "250 g", price: 30, originalPrice: 40, emoji: "🫑", category: "vegetables", discount: 25 },
+        { id: 78, name: "Pumpkin", size: "1 kg", price: 35, originalPrice: 45, emoji: "🎃", category: "vegetables", discount: 22 },
+        { id: 79, name: "Raddish", size: "500 g", price: 25, originalPrice: 35, emoji: "🥕", category: "vegetables", discount: 29 },
+        { id: 80, name: "Beetroot", size: "500 g", price: 35, originalPrice: 45, emoji: "🫒", category: "vegetables", discount: 22 },
+        { id: 81, name: "Sweet Potato", size: "1 kg", price: 50, originalPrice: 65, emoji: "🍠", category: "vegetables", discount: 23 },
+        { id: 82, name: "Cluster Beans", size: "500 g", price: 40, originalPrice: 55, emoji: "🫘", category: "vegetables", discount: 27 },
+        { id: 83, name: "Drumstick", size: "250 g", price: 30, originalPrice: 40, emoji: "🥬", category: "vegetables", discount: 25 },
+        { id: 84, name: "Bitter Gourd", size: "500 g", price: 45, originalPrice: 60, emoji: "🥒", category: "vegetables", discount: 25 },
+        { id: 85, name: "Snake Gourd", size: "500 g", price: 35, originalPrice: 50, emoji: "🥒", category: "vegetables", discount: 30 },
+        { id: 86, name: "Ridge Gourd", size: "500 g", price: 30, originalPrice: 40, emoji: "🥒", category: "vegetables", discount: 25 },
+        { id: 87, name: "Ash Gourd", size: "1 kg", price: 25, originalPrice: 35, emoji: "🥒", category: "vegetables", discount: 29 },
+        { id: 88, name: "Elephant Yam", size: "500 g", price: 40, originalPrice: 55, emoji: "🌰", category: "vegetables", discount: 27 },
+        { id: 89, name: "Taro Root", size: "500 g", price: 35, originalPrice: 45, emoji: "🥔", category: "vegetables", discount: 22 },
+        { id: 90, name: "Broad Beans", size: "500 g", price: 45, originalPrice: 60, emoji: "🫘", category: "vegetables", discount: 25 },
+        { id: 91, name: "Field Beans", size: "500 g", price: 40, originalPrice: 55, emoji: "🫘", category: "vegetables", discount: 27 },
+        { id: 92, name: "Celery", size: "250 g", price: 35, originalPrice: 45, emoji: "🥬", category: "vegetables", discount: 22 },
+        { id: 93, name: "Broccoli", size: "500 g", price: 60, originalPrice: 80, emoji: "🥦", category: "vegetables", discount: 25 },
+        { id: 94, name: "Zucchini", size: "500 g", price: 50, originalPrice: 65, emoji: "🥒", category: "vegetables", discount: 23 },
+        { id: 95, name: "Spring Onion", size: "250 g", price: 20, originalPrice: 30, emoji: "🧅", category: "vegetables", discount: 33 },
+        { id: 96, name: "Parsley", size: "100 g", price: 15, originalPrice: 20, emoji: "🌿", category: "vegetables", discount: 25 },
+        { id: 97, name: "Rosemary", size: "100 g", price: 15, originalPrice: 20, emoji: "🌿", category: "vegetables", discount: 25 },
+        { id: 98, name: "Thyme", size: "100 g", price: 15, originalPrice: 20, emoji: "🌿", category: "vegetables", discount: 25 },
+        { id: 99, name: "Basil", size: "100 g", price: 15, originalPrice: 20, emoji: "🌿", category: "vegetables", discount: 25 },
+        { id: 100, name: "Lettuce", size: "250 g", price: 30, originalPrice: 40, emoji: "🥬", category: "vegetables", discount: 25 },
+        
+        // JUICES (10 items)
+        { id: 101, name: "Orange Juice", size: "1 Litre", price: 80, originalPrice: 100, emoji: "🍊", category: "juices", discount: 20 },
+        { id: 102, name: "Apple Juice", size: "1 Litre", price: 90, originalPrice: 110, emoji: "🍎", category: "juices", discount: 18 },
+        { id: 103, name: "Mixed Fruit Juice", size: "1 Litre", price: 100, originalPrice: 120, emoji: "🥤", category: "juices", discount: 17 },
+        { id: 104, name: "Watermelon Juice", size: "1 Litre", price: 60, originalPrice: 80, emoji: "🍉", category: "juices", discount: 25 },
+        { id: 105, name: "Pineapple Juice", size: "1 Litre", price: 70, originalPrice: 90, emoji: "🍍", category: "juices", discount: 22 },
+        { id: 106, name: "Mango Juice", size: "1 Litre", price: 80, originalPrice: 100, emoji: "🥭", category: "juices", discount: 20 },
+        { id: 107, name: "Pomegranate Juice", size: "1 Litre", price: 120, originalPrice: 150, emoji: "🍎", category: "juices", discount: 20 },
+        { id: 108, name: "Carrot Juice", size: "1 Litre", price: 60, originalPrice: 80, emoji: "🥕", category: "juices", discount: 25 },
+        { id: 109, name: "Beetroot Juice", size: "1 Litre", price: 70, originalPrice: 90, emoji: "🫒", category: "juices", discount: 22 },
+        { id: 110, name: "Tender Coconut", size: "1 pc", price: 40, originalPrice: 50, emoji: "🥥", category: "juices", discount: 20 },
+        
+        // DETERGENTS (20 items)
+        { id: 111, name: "Ariel Detergent", size: "4 kg", price: 750, originalPrice: 1600, emoji: "🧺", category: "detergents", discount: 54 },
+        { id: 112, name: "Surf Excel", size: "3.3 kg", price: 415, originalPrice: 430, emoji: "🧺", category: "detergents", discount: 4 },
+        { id: 113, name: "Rin Detergent", size: "2 kg", price: 180, originalPrice: 220, emoji: "🧺", category: "detergents", discount: 18 },
+        { id: 114, name: "Tide Detergent", size: "3 kg", price: 350, originalPrice: 450, emoji: "🧺", category: "detergents", discount: 22 },
+        { id: 115, name: "Henko Detergent", size: "2 kg", price: 200, originalPrice: 250, emoji: "🧺", category: "detergents", discount: 20 },
+        { id: 116, name: "Nirma Detergent", size: "1 kg", price: 60, originalPrice: 80, emoji: "🧺", category: "detergents", discount: 25 },
+        { id: 117, name: "Wheel Detergent", size: "1 kg", price: 50, originalPrice: 70, emoji: "🧺", category: "detergents", discount: 29 },
+        { id: 118, name: "Ujala Detergent", size: "4 kg", price: 450, originalPrice: 500, emoji: "🧺", category: "detergents", discount: 10 },
+        { id: 119, name: "Comfort Softener", size: "1 Litre", price: 150, originalPrice: 200, emoji: "🧴", category: "detergents", discount: 25 },
+        { id: 120, name: "Vim Dishwash", size: "500 ml", price: 60, originalPrice: 80, emoji: "🧼", category: "detergents", discount: 25 },
+        { id: 121, name: "Pril Dishwash", size: "500 ml", price: 70, originalPrice: 95, emoji: "🧼", category: "detergents", discount: 26 },
+        { id: 122, name: "Dettol Soap", size: "125 g", price: 45, originalPrice: 60, emoji: "🧼", category: "detergents", discount: 25 },
+        { id: 123, name: "Lifebuoy Soap", size: "125 g", price: 40, originalPrice: 55, emoji: "🧼", category: "detergents", discount: 27 },
+        { id: 124, name: "Santoor Soap", size: "125 g", price: 50, originalPrice: 65, emoji: "🧼", category: "detergents", discount: 23 },
+        { id: 125, name: "Pears Soap", size: "100 g", price: 55, originalPrice: 75, emoji: "🧼", category: "detergents", discount: 27 },
+        { id: 126, name: "Mysore Sandal Soap", size: "100 g", price: 60, originalPrice: 85, emoji: "🧼", category: "detergents", discount: 29 },
+        { id: 127, name: "Harpic Cleaner", size: "1 Litre", price: 120, originalPrice: 160, emoji: "🧴", category: "detergents", discount: 25 },
+        { id: 128, name: "Colin Cleaner", size: "500 ml", price: 80, originalPrice: 110, emoji: "🧴", category: "detergents", discount: 27 },
+        { id: 129, name: "Lizol Floor Cleaner", size: "1 Litre", price: 100, originalPrice: 130, emoji: "🧴", category: "detergents", discount: 23 },
+        { id: 130, name: "Mr Muscle Cleaner", size: "500 ml", price: 90, originalPrice: 120, emoji: "🧴", category: "detergents", discount: 25 },
+        
+        // RICE (30 items)
+        { id: 131, name: "Ponni Boiled Rice", size: "5 kg", price: 250, originalPrice: 300, emoji: "🍚", category: "rice", discount: 17 },
+        { id: 132, name: "Ponni Raw Rice", size: "5 kg", price: 240, originalPrice: 290, emoji: "🍚", category: "rice", discount: 17 },
+        { id: 133, name: "Idly Rice", size: "5 kg", price: 260, originalPrice: 320, emoji: "🍚", category: "rice", discount: 19 },
+        { id: 134, name: "Dosa Rice", size: "5 kg", price: 270, originalPrice: 330, emoji: "🍚", category: "rice", discount: 18 },
+        { id: 135, name: "Basmati Rice", size: "5 kg", price: 450, originalPrice: 600, emoji: "🍚", category: "rice", discount: 25 },
+        { id: 136, name: "Jeerakasala Rice", size: "5 kg", price: 400, originalPrice: 550, emoji: "🍚", category: "rice", discount: 27 },
+        { id: 137, name: "Brown Rice", size: "5 kg", price: 350, originalPrice: 450, emoji: "🌾", category: "rice", discount: 22 },
+        { id: 138, name: "Red Rice", size: "5 kg", price: 320, originalPrice: 420, emoji: "🌾", category: "rice", discount: 24 },
+        { id: 139, name: "Matta Rice", size: "5 kg", price: 280, originalPrice: 350, emoji: "🍚", category: "rice", discount: 20 },
+        { id: 140, name: "Kerala Matta Rice", size: "5 kg", price: 300, originalPrice: 380, emoji: "🍚", category: "rice", discount: 21 },
+        { id: 141, name: "Rajabogam Rice", size: "5 kg", price: 400, originalPrice: 520, emoji: "🍚", category: "rice", discount: 23 },
+        { id: 142, name: "Sona Masoori Rice", size: "5 kg", price: 300, originalPrice: 380, emoji: "🍚", category: "rice", discount: 21 },
+        { id: 143, name: "Jeera Rice", size: "5 kg", price: 350, originalPrice: 480, emoji: "🍚", category: "rice", discount: 27 },
+        { id: 144, name: "Pulav Rice", size: "5 kg", price: 320, originalPrice: 420, emoji: "🍚", category: "rice", discount: 24 },
+        { id: 145, name: "Biryani Rice", size: "5 kg", price: 380, originalPrice: 500, emoji: "🍚", category: "rice", discount: 24 },
+        { id: 146, name: "Steam Rice", size: "5 kg", price: 260, originalPrice: 330, emoji: "🍚", category: "rice", discount: 21 },
+        { id: 147, name: "Parboiled Rice", size: "5 kg", price: 270, originalPrice: 340, emoji: "🍚", category: "rice", discount: 21 },
+        { id: 148, name: "Puzhungal Rice", size: "5 kg", price: 280, originalPrice: 350, emoji: "🍚", category: "rice", discount: 20 },
+        { id: 149, name: "Ambur Ponni Rice", size: "5 kg", price: 260, originalPrice: 330, emoji: "🍚", category: "rice", discount: 21 },
+        { id: 150, name: "Kallurai Ponni Rice", size: "5 kg", price: 270, originalPrice: 340, emoji: "🍚", category: "rice", discount: 21 },
+        { id: 151, name: "BPT Rice", size: "5 kg", price: 290, originalPrice: 370, emoji: "🍚", category: "rice", discount: 22 },
+        { id: 152, name: "Swarna Rice", size: "5 kg", price: 280, originalPrice: 360, emoji: "🍚", category: "rice", discount: 22 },
+        { id: 153, name: "IR 64 Rice", size: "5 kg", price: 270, originalPrice: 350, emoji: "🍚", category: "rice", discount: 23 },
+        { id: 154, name: "White Ponni Rice", size: "5 kg", price: 250, originalPrice: 320, emoji: "🍚", category: "rice", discount: 22 },
+        { id: 155, name: "Golden Sona Rice", size: "5 kg", price: 310, originalPrice: 390, emoji: "🍚", category: "rice", discount: 21 },
+        { id: 156, name: "Dubar Rice", size: "5 kg", price: 240, originalPrice: 310, emoji: "🍚", category: "rice", discount: 23 },
+        { id: 157, name: "HMT Rice", size: "5 kg", price: 260, originalPrice: 330, emoji: "🍚", category: "rice", discount: 21 },
+        { id: 158, name: "Bangalore Rice", size: "5 kg", price: 250, originalPrice: 320, emoji: "🍚", category: "rice", discount: 22 },
+        { id: 159, name: "Kerala Rice", size: "5 kg", price: 290, originalPrice: 370, emoji: "🍚", category: "rice", discount: 22 },
+        { id: 160, name: "Tamil Ponni Rice", size: "5 kg", price: 260, originalPrice: 340, emoji: "🍚", category: "rice", discount: 24 }
+    ];
+
+    window.searchProductImage = function(name, size) {
+        window.open(`https://www.google.com/search?q=${encodeURIComponent(name + ' ' + size)}&tbm=isch`, '_blank');
+    };
+
+    function showMessage(msg, isSuccess = true) { 
+        const d=document.createElement('div'); 
+        d.className=`message ${isSuccess?'success':'error'}`; 
+        d.innerHTML=msg; 
+        document.body.appendChild(d); 
+        setTimeout(()=>d.remove(),3000); 
+    }
+    
+    function formatINR(amount) { 
+        return '₹' + amount.toLocaleString('en-IN', { minimumFractionDigits: 2 }); 
+    }
+    
+    window.closeModal = function(modalId) { 
+        document.getElementById(modalId).style.display = 'none'; 
+    };
+
+    function setupCategories() {
+        document.querySelectorAll('.category-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.category-tab').forEach(t=>t.classList.remove('active'));
+                tab.classList.add('active');
+                currentCategory = tab.dataset.category;
+                renderProducts();
+            });
+        });
+    }
+
+    function renderProducts() {
+        const container = document.getElementById('productsGrid');
+        if (!container) return;
+        let filtered = currentCategory === 'all' ? products : products.filter(p => p.category === currentCategory);
+        
+        container.innerHTML = filtered.map(p => {
+            const discountHtml = p.discount > 0 ? `<span class="discount-badge">-${p.discount}%</span>` : '';
+            const originalHtml = p.originalPrice > p.price ? `<span class="original-price">${formatINR(p.originalPrice)}</span>` : '';
+            return `
+                <div class="product-card">
+                    <span class="in-stock">IN STOCK</span>
+                    <div class="product-image" onclick="searchProductImage('${p.name.replace(/'/g, "\\'")}', '${p.size}')" title="🔍 Click to search images">
+                        <div style="font-size:60px;">${p.emoji}</div>
+                        <div style="font-size:10px;margin-top:5px;">🔍 Click</div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-title">${p.name}</div>
+                        <div class="product-size">${p.size}</div>
+                        <div class="product-price">${formatINR(p.price)}${originalHtml}${discountHtml}</div>
+                        <div class="earnings-badge">🎁 100% Bonus: +₹${p.price}</div>
+                        <button class="add-to-cart" onclick="addToCart(${p.id})">Add to Cart 🛒</button>
+                    </div>
+                </div>
+            `;
+        }).join('');
+    }
+
+    window.addToCart = function(id) {
+        const p = products.find(x=>x.id===id);
+        let existing = cart.find(i=>i.id===id);
+        if(existing) existing.quantity++;
+        else cart.push({...p, quantity:1});
+        localStorage.setItem('cart_'+currentUser?.uid, JSON.stringify(cart));
+        renderCart();
+        showMessage(`${p.name} added!`,true);
+    };
+
+    function renderCart() {
+        const c=document.getElementById('cartItems'), t=document.getElementById('cartTotal');
+        if(!c) return;
+        if(cart.length===0){ c.innerHTML='<div class="empty-history">Cart empty</div>'; if(t) t.innerHTML=''; return; }
+        let total=0;
+        c.innerHTML=cart.map(i=>{ let it=i.price*i.quantity; total+=it; return `
+            <div class="cart-item">
+                <div class="cart-item-info">
+                    <div class="cart-item-title">${i.name} - ${i.size}</div>
+                    <div class="cart-item-price">${formatINR(i.price)} each</div>
+                    <div class="earnings-badge" style="font-size:10px;">🎁 You get: +₹${i.price*i.quantity}</div>
+                </div>
+                <div class="cart-item-quantity">
+                    <button class="quantity-btn" onclick="updateQuantity(${i.id},-1)">-</button>
+                    <span>${i.quantity}</span>
+                    <button class="quantity-btn" onclick="updateQuantity(${i.id},1)">+</button>
+                </div>
+                <div class="cart-item-total">${formatINR(it)}</div>
+                <div class="remove-item" onclick="removeFromCart(${i.id})">🗑️</div>
+            </div>`; }).join('');
+        t.innerHTML=`<h3>Total: ${formatINR(total)}</h3><p style="color:#4caf50;">🎁 100% bonus: +${formatINR(total)}</p><p>📞 94871 04731</p>`;
+    }
+
+    window.updateQuantity = function(id,ch){ let i=cart.find(x=>x.id===id); if(i){ i.quantity+=ch; if(i.quantity<=0) cart=cart.filter(x=>x.id!==id); localStorage.setItem('cart_'+currentUser?.uid,JSON.stringify(cart)); renderCart(); } };
+    window.removeFromCart = function(id){ cart=cart.filter(x=>x.id!==id); localStorage.setItem('cart_'+currentUser?.uid,JSON.stringify(cart)); renderCart(); showMessage('Item removed',true); };
+    window.clearCart = function(){ cart=[]; localStorage.setItem('cart_'+currentUser?.uid,JSON.stringify(cart)); renderCart(); showMessage('Cart cleared',true); };
+
+    window.placeOrderCOD = async function() {
+        if(!currentUser){ showMessage('Login first',false); return; }
+        const u=await getDoc(doc(db,"users",currentUser.uid)), ud=u.data();
+        if(!ud?.address){ showMessage('Add address',false); showAddressModal(); return; }
+        if(cart.length===0){ showMessage('Cart empty',false); return; }
+        let total=cart.reduce((s,i)=>s+(i.price*i.quantity),0), bonus=total;
+        await addDoc(collection(db,"orders"),{orderId:Date.now(),userId:currentUser.uid,userName:ud.name,userEmail:currentUser.email,userPhone:ud.phone,deliveryAddress:ud.address.fullAddress,items:[...cart],total,bonus,status:'pending',paymentMethod:'COD',orderDate:new Date().toISOString(),createdAt:Timestamp.now()});
+        await updateDoc(doc(db,"users",currentUser.uid),{balance:(ud?.balance||0)+bonus});
+        cart=[]; localStorage.setItem('cart_'+currentUser.uid,JSON.stringify(cart)); renderCart();
+        showMessage(`✅ Order placed! Total: ${formatINR(total)}. Bonus: +${formatINR(bonus)}`,true);
+        await updateUserUI(); await displayOrdersHistory();
+    };
+
+    window.showAddressModal = async function() {
+        if(currentUser){ const u=await getDoc(doc(db,"users",currentUser.uid)), d=u.data(); if(d?.address){ document.getElementById('addressName').value=d.address.name||d.name; document.getElementById('addressPhone').value=d.address.phone||d.phone; document.getElementById('addressDoor').value=d.address.door||''; document.getElementById('addressStreet').value=d.address.street||''; document.getElementById('addressLandmark').value=d.address.landmark||''; document.getElementById('addressCity').value=d.address.city||'Coimbatore'; document.getElementById('addressPincode').value=d.address.pincode||''; document.getElementById('addressArea').value=d.address.area||'Sundharapuram'; } }
+        document.getElementById('addressModal').style.display='flex';
+    };
+
+    window.saveAddress = async function() {
+        let addr={name:document.getElementById('addressName').value,phone:document.getElementById('addressPhone').value,door:document.getElementById('addressDoor').value,street:document.getElementById('addressStreet').value,landmark:document.getElementById('addressLandmark').value,city:document.getElementById('addressCity').value,pincode:document.getElementById('addressPincode').value,area:document.getElementById('addressArea').value,fullAddress:`${document.getElementById('addressDoor').value}, ${document.getElementById('addressStreet').value}${document.getElementById('addressLandmark').value?', '+document.getElementById('addressLandmark').value:''}, ${document.getElementById('addressArea').value}, ${document.getElementById('addressCity').value} - ${document.getElementById('addressPincode').value}`};
+        await updateDoc(doc(db,"users",currentUser.uid),{address:addr,phone:addr.phone,name:addr.name});
+        await displayAddress(); closeModal('addressModal'); showMessage('Address saved!',true);
+    };
+
+    async function displayAddress() { if(!currentUser)return; let u=await getDoc(doc(db,"users",currentUser.uid)), d=u.data(); document.getElementById('addressDisplay').innerHTML=d?.address?`<div><strong>${d.address.name}</strong> | 📞 ${d.address.phone}</div><div>🏠 ${d.address.door}, ${d.address.street}</div>${d.address.landmark?`<div>📍 ${d.address.landmark}</div>`:''}<div>📮 ${d.address.area}, ${d.address.city} - ${d.address.pincode}</div>`:'<div>⚠️ No address</div>'; }
+
+    window.showDepositModal=()=>document.getElementById('depositModal').style.display='flex';
+    window.showWithdrawalModal=()=>document.getElementById('withdrawalModal').style.display='flex';
+
+    window.submitDepositRequest=async function(){ let a=parseFloat(document.getElementById('depositAmount').value), p=document.getElementById('paymentMethod').value, r=document.getElementById('transactionRef').value; if(!a||a<10){showMessage('Min ₹10',false);return;} if(!r){showMessage('Ref required',false);return;} await addDoc(collection(db,"deposits"),{userId:currentUser.uid,userName:currentUser.displayName||currentUser.email,userEmail:currentUser.email,amount:a,paymentMethod:p,transactionRef:r,status:'pending',date:new Date().toISOString(),createdAt:Timestamp.now()}); closeModal('depositModal'); document.getElementById('depositAmount').value=''; document.getElementById('transactionRef').value=''; showMessage('Deposit submitted!',true); await displayDepositHistory(); };
+
+    window.submitWithdrawalRequest=async function(){ let a=parseFloat(document.getElementById('withdrawalAmount').value), b=document.getElementById('bankDetails').value, u=await getDoc(doc(db,"users",currentUser.uid)), bal=u.data()?.balance||0, max=bal*0.1; if(!a||a<50){showMessage('Min ₹50',false);return;} if(a>max){showMessage(`Max 10% = ${formatINR(max)}`,false);return;} if(!b){showMessage('Bank required',false);return;} let hasPending=await (async()=>{let q=query(collection(db,"withdrawals"),where("userId","==",currentUser.uid),where("status","==","pending"));return!(await getDocs(q)).empty;})(); if(hasPending){showMessage('Pending request!',false);return;} let lastDate=await (async()=>{let q=query(collection(db,"withdrawals"),where("userId","==",currentUser.uid),where("status","==","approved")); let s=await getDocs(q); if(s.empty)return null; let ld=null; s.forEach(d=>{let dt=new Date(d.data().date); if(!ld||dt>ld)ld=dt;}); return ld;})(); if(lastDate){let days=(new Date()-lastDate)/(1000*3600*24); if(days<15){showMessage(`15 days limit! Next: ${new Date(lastDate.getTime()+15*86400000).toLocaleDateString()}`,false);return;}} await addDoc(collection(db,"withdrawals"),{userId:currentUser.uid,userName:currentUser.displayName||currentUser.email,userEmail:currentUser.email,amount:a,bankDetails:b,status:'pending',date:new Date().toISOString(),createdAt:Timestamp.now()}); closeModal('withdrawalModal'); document.getElementById('withdrawalAmount').value=''; document.getElementById('bankDetails').value=''; showMessage('Withdrawal submitted!',true); await displayWithdrawalHistory(); await updateWithdrawalInfo(); };
+
+    async function updateWithdrawalInfo() { if(!currentUser)return; let hasPending=await (async()=>{let q=query(collection(db,"withdrawals"),where("userId","==",currentUser.uid),where("status","==","pending"));return!(await getDocs(q)).empty;})(); let nextDate=await (async()=>{let ld=await (async()=>{let q=query(collection(db,"withdrawals"),where("userId","==",currentUser.uid),where("status","==","approved")); let s=await getDocs(q); if(s.empty)return null; let ld=null; s.forEach(d=>{let dt=new Date(d.data().date); if(!ld||dt>ld)ld=dt;}); return ld;})(); if(!ld)return"Available now"; let nd=new Date(ld); nd.setDate(nd.getDate()+15); return nd.toLocaleDateString('en-IN');})(); document.getElementById('nextWithdrawalDate').innerHTML=`<strong>${nextDate}</strong>`; document.getElementById('pendingWithdrawalWarning').style.display=hasPending?'block':'none'; }
+
+    async function displayDepositHistory(){ if(!currentUser)return; let q=query(collection(db,"deposits"),where("userId","==",currentUser.uid)); let s=await getDocs(q); let c=document.getElementById('depositsHistory'); if(s.empty){c.innerHTML='<div class="empty-history">No deposits</div>';return;} let arr=[]; s.forEach(d=>arr.push({id:d.id,...d.data()})); arr.sort((a,b)=>new Date(b.createdAt?.toDate())-new Date(a.createdAt?.toDate())); c.innerHTML=arr.map(r=>`<div class="history-item"><div class="history-icon">💰</div><div class="history-info"><div class="history-title">Deposit - ₹${r.amount}</div><div class="history-date">${new Date(r.date).toLocaleString()}</div><span class="status-badge status-${r.status}">${r.status.toUpperCase()}</span></div><div class="history-amount credit">+ ${formatINR(r.amount)}</div></div>`).join(''); }
+    async function displayWithdrawalHistory(){ if(!currentUser)return; let q=query(collection(db,"withdrawals"),where("userId","==",currentUser.uid)); let s=await getDocs(q); let c=document.getElementById('withdrawalsHistory'); if(s.empty){c.innerHTML='<div class="empty-history">No withdrawals</div>';return;} let arr=[]; s.forEach(d=>arr.push({id:d.id,...d.data()})); arr.sort((a,b)=>new Date(b.createdAt?.toDate())-new Date(a.createdAt?.toDate())); c.innerHTML=arr.map(r=>`<div class="history-item"><div class="history-icon">💸</div><div class="history-info"><div class="history-title">Withdrawal - ₹${r.amount}</div><div class="history-date">${new Date(r.date).toLocaleString()}</div><span class="status-badge status-${r.status}">${r.status.toUpperCase()}</span><div>Bank: ${r.bankDetails}</div></div><div class="history-amount debit">- ${formatINR(r.amount)}</div></div>`).join(''); }
+    async function displayOrdersHistory(){ if(!currentUser)return; let q=query(collection(db,"orders"),where("userId","==",currentUser.uid)); let s=await getDocs(q); let c=document.getElementById('ordersHistory'); if(s.empty){c.innerHTML='<div class="empty-history">No orders</div>';return;} let arr=[]; s.forEach(d=>arr.push({id:d.id,...d.data()})); arr.sort((a,b)=>new Date(b.createdAt?.toDate())-new Date(a.createdAt?.toDate())); c.innerHTML=arr.map(o=>`<div class="history-item"><div class="history-icon">📦</div><div class="history-info"><div class="history-title">Order #${o.orderId}</div><div class="history-date">${new Date(o.orderDate).toLocaleString()}</div><div>Items: ${o.items.map(i=>`${i.name} x${i.quantity}`).join(', ')}</div><div>🎁 Bonus: +₹${o.bonus}</div><span class="status-badge status-${o.status==='delivered'?'approved':'pending'}">${o.status.toUpperCase()}</span></div><div class="history-amount debit">${formatINR(o.total)}</div></div>`).join(''); }
+
+    window.showHistoryTab=function(t){ document.getElementById('depositsHistory').style.display=t==='deposits'?'block':'none'; document.getElementById('withdrawalsHistory').style.display=t==='withdrawals'?'block':'none'; document.getElementById('ordersHistory').style.display=t==='orders'?'block':'none'; document.querySelectorAll('.history-tab').forEach(tt=>tt.classList.remove('active')); event.target.classList.add('active'); };
+
+    window.showAdminLogin=()=>document.getElementById('adminLoginModal').style.display='flex';
+    window.verifyAdminLogin=function(){ if(document.getElementById('adminPassword').value===ADMIN_PASSWORD){ closeModal('adminLoginModal'); document.getElementById('userPanel').style.display='none'; document.getElementById('adminPanel').style.display='block'; loadAdminData(); showMessage('Welcome Admin!',true); } else showMessage('Wrong password!',false); document.getElementById('adminPassword').value=''; };
+    window.logoutAdmin=function(){ document.getElementById('userPanel').style.display='block'; document.getElementById('adminPanel').style.display='none'; if(currentUser){ updateUserUI(); displayAddress(); displayDepositHistory(); displayWithdrawalHistory(); displayOrdersHistory(); } };
+    async function loadAdminData(){ await loadDepositRequests(); await loadWithdrawalRequests(); await loadAllOrders(); await loadAllUsers(); await updateStats(); }
+    async function loadDepositRequests(){ let q=query(collection(db,"deposits"),where("status","==","pending")); let s=await getDocs(q); let c=document.getElementById('depositRequestsList'); if(s.empty){c.innerHTML='<div class="empty-history">No pending deposits</div>';return;} let arr=[]; s.forEach(d=>arr.push({id:d.id,...d.data()})); arr.sort((a,b)=>new Date(b.createdAt?.toDate())-new Date(a.createdAt?.toDate())); c.innerHTML=arr.map(r=>`<div class="request-card"><div><strong>💰 ${formatINR(r.amount)}</strong><br>User: ${r.userName}<br>Method: ${r.paymentMethod}<br>Ref: ${r.transactionRef}<br><small>${new Date(r.date).toLocaleString()}</small></div><div><button class="btn-approve" onclick="approveDeposit('${r.id}',${r.amount},'${r.userId}')">✓ Approve</button><button class="btn-reject" onclick="rejectDeposit('${r.id}','${r.userId}')">✗ Reject</button></div></div>`).join(''); }
+    window.approveDeposit=async function(id,a,uid){ await updateDoc(doc(db,"deposits",id),{status:'approved'}); let u=await getDoc(doc(db,"users",uid)); await updateDoc(doc(db,"users",uid),{balance:(u.data()?.balance||0)+a}); showMessage(`Deposit of ${formatINR(a)} approved!`,true); await loadAdminData(); if(currentUser?.uid===uid){ await updateUserUI(); await displayDepositHistory(); } };
+    window.rejectDeposit=async function(id,uid){ await updateDoc(doc(db,"deposits",id),{status:'rejected'}); showMessage('Deposit rejected',false); await loadAdminData(); if(currentUser?.uid===uid) await displayDepositHistory(); };
+    async function loadWithdrawalRequests(){ let q=query(collection(db,"withdrawals"),where("status","==","pending")); let s=await getDocs(q); let c=document.getElementById('withdrawalRequestsList'); if(s.empty){c.innerHTML='<div class="empty-history">No pending withdrawals</div>';return;} let arr=[]; s.forEach(d=>arr.push({id:d.id,...d.data()})); arr.sort((a,b)=>new Date(b.createdAt?.toDate())-new Date(a.createdAt?.toDate())); c.innerHTML=arr.map(r=>`<div class="request-card"><div><strong>💸 ${formatINR(r.amount)}</strong><br>User: ${r.userName}<br>Bank: ${r.bankDetails}<br><small>${new Date(r.date).toLocaleString()}</small></div><div><button class="btn-approve" onclick="approveWithdrawal('${r.id}',${r.amount},'${r.userId}')">✓ Approve</button><button class="btn-reject" onclick="rejectWithdrawal('${r.id}','${r.userId}')">✗ Reject</button></div></div>`).join(''); }
+    window.approveWithdrawal=async function(id,a,uid){ let u=await getDoc(doc(db,"users",uid)); let bal=u.data()?.balance||0; if(bal>=a){ await updateDoc(doc(db,"withdrawals",id),{status:'approved'}); await updateDoc(doc(db,"users",uid),{balance:bal-a}); showMessage(`Withdrawal of ${formatINR(a)} approved!`,true); } else showMessage('Insufficient balance!',false); await loadAdminData(); if(currentUser?.uid===uid){ await updateUserUI(); await displayWithdrawalHistory(); } };
+    window.rejectWithdrawal=async function(id,uid){ await updateDoc(doc(db,"withdrawals",id),{status:'rejected'}); showMessage('Withdrawal rejected',false); await loadAdminData(); if(currentUser?.uid===uid) await displayWithdrawalHistory(); };
+    async function loadAllOrders(){ let s=await getDocs(collection(db,"orders")); let c=document.getElementById('ordersList'); if(s.empty){c.innerHTML='<div class="empty-history">No orders</div>';return;} let arr=[]; s.forEach(d=>arr.push({docId:d.id,...d.data()})); arr.sort((a,b)=>new Date(b.createdAt?.toDate())-new Date(a.createdAt?.toDate())); c.innerHTML=arr.map(o=>`<div class="request-card"><div><strong>📦 Order #${o.orderId}</strong><br>${o.userName}<br>Phone: ${o.userPhone}<br>Items: ${o.items.map(i=>`${i.name} x${i.quantity}`).join(', ')}<br>Total: ${formatINR(o.total)}<br>Bonus: +₹${o.bonus}<br>Address: ${o.deliveryAddress}<br><span class="status-badge status-${o.status==='delivered'?'approved':'pending'}">${o.status.toUpperCase()}</span></div>${o.status==='pending'?`<div><button class="btn-approve" onclick="markOrderDelivered('${o.docId}')">✓ Mark Delivered</button></div>`:''}</div>`).join(''); }
+    window.markOrderDelivered=async function(id){ await updateDoc(doc(db,"orders",id),{status:'delivered'}); showMessage('Order delivered!',true); await loadAllOrders(); if(currentUser) await displayOrdersHistory(); };
+    async function loadAllUsers(){ let s=await getDocs(collection(db,"users")); let c=document.getElementById('usersList'); if(s.empty){c.innerHTML='<div class="empty-history">No users</div>';return;} c.innerHTML=''; s.forEach(d=>{let u=d.data(); c.innerHTML+=`<div class="request-card"><div><strong>👤 ${u.name}</strong><br>Email: ${u.email}<br>Phone: ${u.phone||'N/A'}<br>Balance: ${formatINR(u.balance||0)}<br>Address: ${u.address?.fullAddress||'No address'}</div></div>`;}); }
+    async function updateStats(){ let d=await getDocs(query(collection(db,"deposits"),where("status","==","pending"))); let w=await getDocs(query(collection(db,"withdrawals"),where("status","==","pending"))); let o=await getDocs(collection(db,"orders")); let u=await getDocs(collection(db,"users")); document.getElementById('pendingDeposits').innerText=d.size; document.getElementById('pendingWithdrawals').innerText=w.size; document.getElementById('totalOrders').innerText=o.size; document.getElementById('totalUsers').innerText=u.size; }
+    window.showAdminTab=function(t){ document.getElementById('adminDepositsTab').style.display=t==='deposits'?'block':'none'; document.getElementById('adminWithdrawalsTab').style.display=t==='withdrawals'?'block':'none'; document.getElementById('adminOrdersTab').style.display=t==='orders'?'block':'none'; document.getElementById('adminUsersTab').style.display=t==='users'?'block':'none'; document.querySelectorAll('.tab').forEach(tt=>tt.classList.remove('active')); event.target.classList.add('active'); };
+
+    async function updateUserUI(){ if(!currentUser)return; let u=await getDoc(doc(db,"users",currentUser.uid)); document.getElementById('walletBalance').innerHTML=formatINR(u.data()?.balance||0); document.getElementById('userName').innerHTML=`👤 ${u.data()?.name||currentUser.email}`; }
+    window.logoutUser=async()=>{ await signOut(auth); currentUser=null; showLoginUI(); };
+
+    function showLoginUI() {
+        document.getElementById('userPanel').innerHTML = `<div class="auth-container"><div class="auth-header"><div style="font-size:50px;">🛒</div><h2>ONLINE BOSS</h2><p>Oils & Grocery</p><p>Sundharapuram | Podanur | Coimbatore</p><p style="font-size:12px;">📞 94871 04731</p></div><div id="loginForm"><div class="form-group"><label>Email</label><input type="email" id="loginEmail" placeholder="Enter email"></div><div class="form-group"><label>Password</label><input type="password" id="loginPassword" placeholder="Enter password"></div><button class="btn btn-primary" onclick="doLogin()">Login</button><button class="btn cancel-btn" onclick="showRegisterForm()">Create Account</button></div><div id="registerForm" style="display:none;"><div class="form-group"><label>Name</label><input type="text" id="regName"></div><div class="form-group"><label>Email</label><input type="email" id="regEmail"></div><div class="form-group"><label>Phone</label><input type="tel" id="regPhone"></div><div class="form-group"><label>Password</label><input type="password" id="regPassword"></div><button class="btn btn-primary" onclick="doRegister()">Register</button><button class="btn cancel-btn" onclick="showLoginForm()">Back</button></div></div>`;
+    }
+
+    window.doLogin=async()=>{ try{ await signInWithEmailAndPassword(auth,document.getElementById('loginEmail').value,document.getElementById('loginPassword').value); location.reload(); }catch(e){ showMessage('Invalid email/password',false); } };
+    window.doRegister=async()=>{ let n=document.getElementById('regName').value,e=document.getElementById('regEmail').value,p=document.getElementById('regPhone').value,pass=document.getElementById('regPassword').value; if(!n||!e||!p||!pass){showMessage('All fields required',false);return;} if(pass.length<6){showMessage('Password min 6 chars',false);return;} try{ let u=await createUserWithEmailAndPassword(auth,e,pass); await updateProfile(u.user,{displayName:n}); await setDoc(doc(db,"users",u.user.uid),{uid:u.user.uid,name:n,email:e,phone:p,balance:0,createdAt:new Date().toISOString()}); showMessage('Registration successful!',true); location.reload(); }catch(err){showMessage(err.message,false);} };
+    window.showRegisterForm=()=>{ document.getElementById('loginForm').style.display='none'; document.getElementById('registerForm').style.display='block'; };
+    window.showLoginForm=()=>{ document.getElementById('loginForm').style.display='block'; document.getElementById('registerForm').style.display='none'; };
+
+    onAuthStateChanged(auth,async(user)=>{ if(user){ currentUser=user; let u=await getDoc(doc(db,"users",user.uid)); if(!u.exists()) await setDoc(doc(db,"users",user.uid),{uid:user.uid,name:user.displayName||user.email,email:user.email,balance:0,createdAt:new Date().toISOString()}); cart=JSON.parse(localStorage.getItem('cart_'+user.uid))||[]; setupCategories(); renderProducts(); renderCart(); await updateUserUI(); await displayAddress(); await displayDepositHistory(); await displayWithdrawalHistory(); await displayOrdersHistory(); await updateWithdrawalInfo(); } else if(!document.getElementById('userPanel').innerHTML.includes('Login')) showLoginUI(); });
+</script>
+</body>
+</html>
