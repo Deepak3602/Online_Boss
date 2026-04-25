@@ -134,6 +134,26 @@
 </head>
 <body>
 
+<script>
+  // Ensure basic UI helpers exist immediately so inline onclick handlers don't crash
+  window.showMessage = window.showMessage || function (msg, isSuccess = true) {
+    try {
+      const d = document.createElement('div');
+      d.className = `message ${isSuccess ? 'success' : 'error'}`;
+      d.textContent = msg;
+      document.body.appendChild(d);
+      setTimeout(() => d.remove(), 3000);
+    } catch (e) {
+      /* fallback */ alert(msg);
+    }
+  };
+
+  // Temporary logout placeholder until module defines the real one
+  window.logoutUser = window.logoutUser || function () {
+    window.showMessage('App is loading — please wait or reload the page.', false);
+  };
+</script>
+
 <div id="userPanel">
     <div class="header">
         <h1>🛒 <span>ONLINE BOSS</span><br>Oils & Grocery</h1>
@@ -277,12 +297,18 @@
     <button class="btn cancel-btn" onclick="closeModal('adminLoginModal')">Cancel</button>
 </div></div>
 
-<script>
-    import { initializeApp } from "vendor/firebase-app.js";
-    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, updateProfile } from "vendor/firebase-auth_1.js";
-    import { getFirestore, doc, getDoc, setDoc, updateDoc, collection, query, where, getDocs, addDoc, Timestamp } from "vendor/firebase-firestore_2.js";
+<script type="module">
+  (async function initFirebaseAndApp() {
+    try {
+      const appMod = await import('https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js');
+      const authMod = await import('https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js');
+      const firestoreMod = await import('https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js');
 
-    const firebaseConfig = {
+      const { initializeApp } = appMod;
+      const { getAuth, onAuthStateChanged, signOut, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile } = authMod;
+      const { getFirestore, doc, getDoc, setDoc, updateDoc, collection, query, where, getDocs, addDoc, Timestamp } = firestoreMod;
+
+      const firebaseConfig = {
         apiKey: "AIzaSyAwlcy4uvw79EEjDRALtyFiIvUNwtuxt0A",
         authDomain: "amuthu-earnings.firebaseapp.com",
         databaseURL: "https://amuthu-earnings-default-rtdb.asia-southeast1.firebasedatabase.app",
@@ -291,12 +317,43 @@
         messagingSenderId: "349450297914",
         appId: "1:349450297914:web:d648cd56e1422c844d8b03",
         measurementId: "G-EXN902G3YZ"
-    };
+      };
 
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-    const db = getFirestore(app);
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+      const db = getFirestore(app);
 
+      // expose globals used by your existing code
+      window.__firebaseApp = app;
+      window.auth = auth;
+      window.db = db;
+
+      window.signOut = signOut;
+      window.onAuthStateChanged = onAuthStateChanged;
+      window.signInWithEmailAndPassword = signInWithEmailAndPassword;
+      window.createUserWithEmailAndPassword = createUserWithEmailAndPassword;
+      window.updateProfile = updateProfile;
+
+      window.doc = doc;
+      window.getDoc = getDoc;
+      window.setDoc = setDoc;
+      window.updateDoc = updateDoc;
+      window.collection = collection;
+      window.query = query;
+      window.where = where;
+      window.getDocs = getDocs;
+      window.addDoc = addDoc;
+      window.Timestamp = Timestamp;
+
+      console.log('Firebase initialized via CDN ESM');
+    } catch (err) {
+      console.error('initFirebaseAndApp error:', err);
+      window.showMessage('Firebase init failed: ' + (err.message || err), false);
+    }
+  })();
+</script>
+
+<script>
     const ADMIN_PASSWORD = "103693";
     let currentUser = null;
     let cart = [];
@@ -632,7 +689,29 @@
     window.showAdminTab=function(t){ document.getElementById('adminDepositsTab').style.display=t==='deposits'?'block':'none'; document.getElementById('adminWithdrawalsTab').style.display=t==='withdrawals'?'block':'none'; document.getElementById('adminOrdersTab').style.display=t==='orders'?'block':'none'; document.getElementById('adminUsersTab').style.display=t==='users'?'block':'none'; document.querySelectorAll('.tab').forEach(tt=>tt.classList.remove('active')); event.target.classList.add('active'); };
 
     async function updateUserUI(){ if(!currentUser)return; let u=await getDoc(doc(db,"users",currentUser.uid)); document.getElementById('walletBalance').innerHTML=formatINR(u.data()?.balance||0); document.getElementById('userName').innerHTML=`👤 ${u.data()?.name||currentUser.email}`; }
-    window.logoutUser=async()=>{ await signOut(auth); currentUser=null; showLoginUI(); };
+    window.logoutUser = async () => {
+        try {
+            // If firebase init completed, use the exported signOut and auth
+            if (window.signOut && window.auth) {
+                await window.signOut(window.auth);
+                currentUser = null;
+                showLoginUI();
+                return;
+            }
+            // Fallback: if older globals exist (rare)
+            if (typeof signOut === 'function' && typeof auth !== 'undefined') {
+                await signOut(auth);
+                currentUser = null;
+                showLoginUI();
+                return;
+            }
+            // Not ready yet
+            window.showMessage('Firebase is still initializing — please wait and try again.', false);
+        } catch (err) {
+            console.error('Logout error:', err);
+            window.showMessage('Logout failed: ' + (err.message || err), false);
+        }
+    };
 
     function showLoginUI() {
         document.getElementById('userPanel').innerHTML = `<div class="auth-container"><div class="auth-header"><div style="font-size:50px;">🛒</div><h2>ONLINE BOSS</h2><p>Oils & Grocery</p><p>Sundharapuram | Podanur | Coimbatore</p><p style="font-size:12px;">📞 94871 04731</p></div><div id="loginForm"><div class="form-group"><label>Email</label><input type="email" id="loginEmail" placeholder="Enter email"></div><div class="form-group"><label>Password</label><input type="password" id="loginPassword" placeholder="Enter password"></div><button class="btn btn-primary" onclick="doLogin()">Login</button><button class="btn cancel-btn" onclick="showRegisterForm()">Create Account</button></div><div id="registerForm" style="display:none;"><div class="form-group"><label>Name</label><input type="text" id="regName"></div><div class="form-group"><label>Email</label><input type="email" id="regEmail"></div><div class="form-group"><label>Phone</label><input type="tel" id="regPhone"></div><div class="form-group"><label>Password</label><input type="password" id="regPassword"></div><button class="btn btn-primary" onclick="doRegister()">Register</button><button class="btn cancel-btn" onclick="showLoginForm()">Back</button></div></div>`;
@@ -643,7 +722,39 @@
     window.showRegisterForm=()=>{ document.getElementById('loginForm').style.display='none'; document.getElementById('registerForm').style.display='block'; };
     window.showLoginForm=()=>{ document.getElementById('loginForm').style.display='block'; document.getElementById('registerForm').style.display='none'; };
 
-    onAuthStateChanged(auth,async(user)=>{ if(user){ currentUser=user; let u=await getDoc(doc(db,"users",user.uid)); if(!u.exists()) await setDoc(doc(db,"users",user.uid),{uid:user.uid,name:user.displayName||user.email,email:user.email,balance:0,createdAt:new Date().toISOString()}); cart=JSON.parse(localStorage.getItem('cart_'+user.uid))||[]; setupCategories(); renderProducts(); renderCart(); await updateUserUI(); await displayAddress(); await displayDepositHistory(); await displayWithdrawalHistory(); await displayOrdersHistory(); await updateWithdrawalInfo(); } else if(!document.getElementById('userPanel').innerHTML.includes('Login')) showLoginUI(); });
+    (async function waitForAuthAndAttachListener() {
+        // wait up to 5 seconds for firebase auth to be initialized
+        const maxAttempts = 50;
+        for (let i = 0; i < maxAttempts; i++) {
+            if (window.onAuthStateChanged && window.auth && typeof window.onAuthStateChanged === 'function') break;
+            await new Promise(r => setTimeout(r, 100));
+        }
+        if (!window.onAuthStateChanged || !window.auth) {
+            console.error('Firebase auth not ready after wait. onAuthStateChanged or auth missing.');
+            window.showMessage?.('Firebase auth not ready. Reload the page after the server starts.', false);
+            return;
+        }
+
+        window.onAuthStateChanged(window.auth, async (user) => {
+            if (user) {
+                currentUser = user;
+                let u = await getDoc(doc(db, "users", user.uid));
+                if (!u.exists()) await setDoc(doc(db, "users", user.uid), { uid: user.uid, name: user.displayName || user.email, email: user.email, balance: 0, createdAt: new Date().toISOString() });
+                cart = JSON.parse(localStorage.getItem('cart_' + user.uid)) || [];
+                setupCategories();
+                renderProducts();
+                renderCart();
+                await updateUserUI();
+                await displayAddress();
+                await displayDepositHistory();
+                await displayWithdrawalHistory();
+                await displayOrdersHistory();
+                await updateWithdrawalInfo();
+            } else if (!document.getElementById('userPanel').innerHTML.includes('Login')) {
+                showLoginUI();
+            }
+        });
+    })();
 </script>
 </body>
 </html>
