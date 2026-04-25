@@ -130,6 +130,13 @@
         .auth-container{max-width:450px;margin:50px auto;background:white;border-radius:30px;padding:40px30px;box-shadow:0 20px 60px rgba(0,0,0,0.3);}
         .auth-header{text-align:center;margin-bottom:30px;}
         @media(max-width:768px){.container{padding:15px;}.wallet-card{flex-direction:column;text-align:center;}.partners-grid{grid-template-columns:repeat(2,1fr);}}
+        .logo img {
+            height: 45px;
+            width: 45px;
+            border-radius: 50%;   /* Makes it round */
+            object-fit: cover;    /* Keeps image nicely cropped */
+            border: 2px solid #fff; /* Optional border */
+        }
     </style>
 </head>
 <body>
@@ -156,6 +163,9 @@
 
 <div id="userPanel">
     <div class="header">
+        <div class="logo">
+        <img src="./assets/logo.png" alt="Logo">
+        </div>
         <h1>🛒 <span>ONLINE BOSS</span><br>Oils & Grocery</h1>
         <p>Pure Quality Oils | Home Delivery</p>
         <div class="delivery-area">📍 Delivery: Sundharapuram | Podanur | Coimbatore</div>
@@ -714,7 +724,8 @@
     };
 
     function showLoginUI() {
-        document.getElementById('userPanel').innerHTML = `<div class="auth-container"><div class="auth-header"><div style="font-size:50px;">🛒</div><h2>ONLINE BOSS</h2><p>Oils & Grocery</p><p>Sundharapuram | Podanur | Coimbatore</p><p style="font-size:12px;">📞 94871 04731</p></div><div id="loginForm"><div class="form-group"><label>Email</label><input type="email" id="loginEmail" placeholder="Enter email"></div><div class="form-group"><label>Password</label><input type="password" id="loginPassword" placeholder="Enter password"></div><button class="btn btn-primary" onclick="doLogin()">Login</button><button class="btn cancel-btn" onclick="showRegisterForm()">Create Account</button></div><div id="registerForm" style="display:none;"><div class="form-group"><label>Name</label><input type="text" id="regName"></div><div class="form-group"><label>Email</label><input type="email" id="regEmail"></div><div class="form-group"><label>Phone</label><input type="tel" id="regPhone"></div><div class="form-group"><label>Password</label><input type="password" id="regPassword"></div><button class="btn btn-primary" onclick="doRegister()">Register</button><button class="btn cancel-btn" onclick="showLoginForm()">Back</button></div></div>`;
+        document.getElementById('userPanel').innerHTML = `<div class="auth-container">
+            <div class="auth-header"><div style="font-size:50px;">🛒</div><h2>ONLINE BOSS</h2><p>Oils & Grocery</p><p>Sundharapuram | Podanur | Coimbatore</p><p style="font-size:12px;">📞 94871 04731</p></div><div id="loginForm"><div class="form-group"><label>Email</label><input type="email" id="loginEmail" placeholder="Enter email"></div><div class="form-group"><label>Password</label><input type="password" id="loginPassword" placeholder="Enter password"></div><button class="btn btn-primary" onclick="doLogin()">Login</button><button class="btn cancel-btn" onclick="showRegisterForm()">Create Account</button></div><div id="registerForm" style="display:none;"><div class="form-group"><label>Name</label><input type="text" id="regName"></div><div class="form-group"><label>Email</label><input type="email" id="regEmail"></div><div class="form-group"><label>Phone</label><input type="tel" id="regPhone"></div><div class="form-group"><label>Password</label><input type="password" id="regPassword"></div><button class="btn btn-primary" onclick="doRegister()">Register</button><button class="btn cancel-btn" onclick="showLoginForm()">Back</button></div></div>`;
     }
 
     window.doLogin=async()=>{ try{ await signInWithEmailAndPassword(auth,document.getElementById('loginEmail').value,document.getElementById('loginPassword').value); location.reload(); }catch(e){ showMessage('Invalid email/password',false); } };
